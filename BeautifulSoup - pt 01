@@ -1,0 +1,15 @@
+import requests
+from bs4 import BeautifulSoup
+
+url_site = "https://www.monster.com/jobs/search/?q=Software-Developer&where=Australia"
+pagina_web = requests.get(url_site)
+
+soup = BeautifulSoup(pagina_web.content, "html.parser")
+
+# Find elements by ID
+result_search = soup.find(id = "ResultsContainer")
+print(result_search.prettify())
+
+# Find elements by Class Name
+result_second_search = result_search.find_all("section", class_="card-content")
+
